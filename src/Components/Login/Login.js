@@ -4,6 +4,7 @@ import "firebase/auth";
 import firebaseConfig from './firebase-config';
 import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { Button, Container } from '@material-ui/core';
 
 
 if (!firebase.apps.length) {
@@ -54,11 +55,10 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <h3>Login Page</h3>
-            
-            <button onClick={handleGoogleSignIn}>Google Sign In</button>
-        </div>
+        <Container style={{textAlign:'center'}} maxWidth='lg'>
+            <h2>Login Page</h2>
+            <Button variant="contained" color="secondary" onClick={handleGoogleSignIn}>Google Sign In</Button>
+        </Container>
     );
 };
 

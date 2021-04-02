@@ -26,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
     //     marginLeft: drawerWidth,
     // },
     drawer: {
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up("md")]: {
           width: drawerWidth,
           flexShrink: 0
         }
     },
     drawerPaper: {
-        width: drawerWidth,
+        width: '16%',
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
@@ -45,20 +45,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 const AdminBar = () => {
+    
 
     const classes = useStyles();
 
     return (
-        <Container maxWidth="lg">
-            <CssBaseline />
-            {/* <AppBar position="fixed" className={classes.appBar}>
+            
+            <Container maxWidth="md">
+                {/* <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" noWrap>
                         Admin Panel
                     </Typography>
                 </Toolbar>
             </AppBar> */}
-            <Container maxWidth="md">
             <Drawer
                 className={classes.drawer}
                 variant="permanent"
@@ -68,43 +68,32 @@ const AdminBar = () => {
                 anchor="left"
             >
                 <div className={classes.toolbar} />
-                <Divider />
-                <List>
+                <List style={{marginTop:'25%'}}>
                     {/* {['Inbox', 'Starred', 'Send email'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))} */}
-                    <Link to="/addProduct">
+                    <Link style={{textDecoration:'none',color:'#2b4fff'}} to="/addProduct">
                     <ListItem button >
-                        <ListItemIcon> 
-                            <InboxIcon />
-                        </ListItemIcon>
                         <ListItemText primary={'Add Product'} />
                     </ListItem>
                     </Link>
-                    <Link to="/manageProduct">
+                    <Link style={{textDecoration:'none',color:'#ff1f67'}} to="/manageProduct">
                     <ListItem button >
-                        <ListItemIcon> 
-                            <InboxIcon />
-                        </ListItemIcon>
                         <ListItemText primary={'Manage Product'} />
                     </ListItem>
                     </Link>
-                    <Link to="/editProduct">
+                    <Link style={{textDecoration:'none',color:'#007979'}} to="/editProduct">
                     <ListItem button >
-                        <ListItemIcon> 
-                            <InboxIcon />
-                        </ListItemIcon>
                         <ListItemText primary={'Edit Product'} />
                     </ListItem>
                     </Link>
-                    </List>
+                </List>
                 
             </Drawer>
             </Container>
-        </Container>
     );
 };
 

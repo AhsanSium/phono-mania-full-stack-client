@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,23 +7,21 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
+import logo from '../../images/logo.png';
+import { UserContext } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
     navLink:{
         textDecoration:'none',
         color:'white',
-        margin:'1%',
+        margin:'0',
+        padding:'8px 15px',
+        borderRadius:'5px',
         "&:hover": {
-            background: "#efefef"
+            background: "#163242",
           }
     }
     
@@ -32,17 +30,19 @@ const useStyles = makeStyles((theme) => ({
 const Menu = () => {
 
     const classes = useStyles();
+    
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     return (
-        <div>
-            
-            <div className={classes.root}>
-                <AppBar position="static">
+            <div  className={classes.root}>
+                <AppBar style={{  backgroundColor:'#3f84b58f'}} position="static">
                     <Toolbar>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                            PhonoMania
+                        <NavLink to='/'>
+                        <img style={{width:'100%',margin:'10px'}} src={logo} alt=""/>
+                               
+                            </NavLink>
+                        <Typography style={{width:'100%'}} variant="h6">
+
                         </Typography>
 
                         
@@ -71,13 +71,14 @@ const Menu = () => {
                        
                 
                             <NavLink className={classes.navLink} to='/login'>
-                                Login
+                                {
+                                    loggedInUser.email? loggedInUser.name : 'Login'
+                                }
                             </NavLink>
                             
                     </Toolbar>
                 </AppBar>
             </div>
-        </div>
     );
 };
 

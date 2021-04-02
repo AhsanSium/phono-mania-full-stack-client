@@ -14,7 +14,7 @@ const ManageProduct = () => {
 
     useEffect(()=>{
         setProducts({ loading: true });
-        fetch('http://localhost:5000/products')
+        fetch('https://cherry-pie-50881.herokuapp.com/products')
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -25,7 +25,7 @@ const ManageProduct = () => {
 
     const handleDelete = (id) => {
         console.log(id);
-        fetch('http://localhost:5000/delete/' + id ,{
+        fetch('https://cherry-pie-50881.herokuapp.com/delete/' + id ,{
             method:'DELETE'
         })
         .then(res => res.json())
@@ -36,9 +36,13 @@ const ManageProduct = () => {
     }
 
     return (
-        <div style={{marginLeft:'50%'}}>
+        <div style={{marginLeft:'20%'}}>
             <AdminBar></AdminBar>
             <h3>This Is Manage Product</h3>
+            {
+                products.loading &&
+                <h3>Loading Products</h3>
+            }
             {
                 products.data&&products.data.map(product => <li>Name:{product.name} Price:  {product.price} <button onClick={()=>handleDelete(product._id)}>Delete</button> </li> )
             }

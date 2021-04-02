@@ -2,8 +2,33 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { UserContext } from '../../App';
 import { useForm } from "react-hook-form";
+import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        background:'#ccefff94',
+        padding:'15px',
+        borderRadius:'10px',
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },  
+    },
+  }));
 
 const CheckOut = () => {
+
+    const classes = useStyles();
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const { orderId } = useParams();
@@ -16,7 +41,7 @@ const CheckOut = () => {
         const newProduct = { ...product };
         newProduct.isLoading = true;
         newProduct.id = orderId;
-        fetch('http://localhost:5000/productById/' + orderId)
+        fetch('https://cherry-pie-50881.herokuapp.com/productById/' + orderId)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -40,7 +65,7 @@ const CheckOut = () => {
         console.log(data);
         const orderDetails = {products:product.data, shipment:data, user:loggedInUser, orderTime:new Date(), email:loggedInUser.email};
         console.log(orderDetails);
-        fetch('http://localhost:5000/addOrder', { 
+        fetch('https://cherry-pie-50881.herokuapp.com/addOrder', { 
             method: 'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(orderDetails)
@@ -55,14 +80,30 @@ const CheckOut = () => {
 
 
     return (
-        <div>
+        <Container maxWidth="lg">
             <h3>CheckOut</h3>
-            <p>{orderId}</p>
-            <p>Name: {name}</p>
-            <img src={image} alt="" />
-            <p>Price: {price}</p>
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name: </TableCell>
+                                <TableCell>Order Id: </TableCell>
+                                <TableCell>Image: </TableCell>
+                                <TableCell>Price: </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow>
+                            <TableCell>{name}</TableCell>
+                                <TableCell>{orderId}</TableCell>
+                                <TableCell><img width="20%" src={image} alt="" /> </TableCell>
+                                <TableCell>{price} </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>                
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
                 
                 <input name="name" defaultValue={loggedInUser.name} placeholder="Name" ref={register({ required: true })} />
                 {errors.name && <span>This field is required</span>}
@@ -70,13 +111,14 @@ const CheckOut = () => {
                 <input name="Email" placeholder="E-mail" defaultValue={loggedInUser.email} ref={register({ required: true })} />
                 {errors.Email && <span>This field is required</span>}
                 <br/>
+
                 <input name="address" placeholder="Address" ref={register({ required: true })} />
                 {errors.address && <span>This field is required</span>}                
                 <br/>
                 <input type="submit" />
             
             </form>
-        </div>
+        </Container>
     );
 };
 

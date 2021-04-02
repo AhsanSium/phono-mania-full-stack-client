@@ -3,6 +3,20 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import AdminBar from './AdminBar';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+      background:'#ccefff94',
+      padding:'15px',
+      borderRadius:'10px',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 
 const AddProduct = () => {
@@ -34,7 +48,7 @@ const AddProduct = () => {
             price: data.price,
             imageURL: image?.imageURL
         };
-        const url = 'http://localhost:5000/addProduct';
+        const url = 'https://cherry-pie-50881.herokuapp.com/addProduct';
         console.log(eventData);
         console.log(data);
         fetch(url, {
@@ -44,8 +58,13 @@ const AddProduct = () => {
             },
             body: JSON.stringify(eventData)
         })
-        .then(res => console.log(res));
+        .then(res => {
+            console.log(res);
+            alert('Product Added');
+        });
     };
+
+    const classes = useStyles();
 
     return (
         <div>
@@ -53,14 +72,16 @@ const AddProduct = () => {
             
             <Container maxWidth="lg">
             <AdminBar></AdminBar>
-            <Container style={{marginLeft:'50%'}} maxWidth="lg">
+            <Container style={{marginLeft:'20%'}} maxWidth="lg">
             <h3>Add Product</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
                 
-                <input name="name" placeholder="NAME" defaultValue="Name" ref={register} />
+                <TextField id="standard-basic" variant="outlined" name="name" placeholder="NAME" ref={register}/>
+                {/* <input name="name" placeholder="NAME" defaultValue="Name" ref={register} /> */}
 
                 <br/>
-                <input name="price" placeholder="PRICE" ref={register}  />
+                <TextField id="outlined-basic" variant="outlined" name="price" placeholder="PRICE" ref={register}/>
+                {/* <input name="price" placeholder="PRICE" ref={register}  /> */}
                 <br/>
                 {
                     console.log(image.isUploading)
@@ -69,11 +90,13 @@ const AddProduct = () => {
                     image.isUploading &&
                     <p>Image Uploading</p>
                 }
-                <input name="exampleRequired" type="file" onChange={handleImageUpload} />
-
+                <TextField id="outlined-basic" variant="outlined" name="exampleRequired" type="file" onChange={handleImageUpload} />
+                
+                {/* <input name="exampleRequired" type="file" onChange={handleImageUpload} /> */}
                 {/* {errors.exampleRequired && <span>This field is required</span>} */}
                 <br/>
-                <input type="submit" />
+                <TextField id="outlined-basic" variant="outlined"  type="submit" />
+                {/* <input type="submit" /> */}
             </form>
             </Container>
             </Container>

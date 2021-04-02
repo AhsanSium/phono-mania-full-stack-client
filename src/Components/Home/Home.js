@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PhoneDetails from '../PhoneDetails/PhoneDetails';
 import loadingImage from '../../images/loading.gif';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import { Container } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },    
+  }));
 
 const Home = () => {
 
@@ -13,9 +22,18 @@ const Home = () => {
     //     data: null,
     //   });
 
+
+    // async function fetchData() {
+    //     setUsers(
+    //             await fetch('https://reqres.in/api/users')
+    //             .then(res => res.json())
+    //             .then(res => res.data)
+    //             .catch(err => console.log(err, 'error...'))
+
+
     useEffect(()=>{
         setProducts({ loading: true });
-        fetch('http://localhost:5000/products')
+        fetch('https://cherry-pie-50881.herokuapp.com/products')
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -27,17 +45,39 @@ const Home = () => {
     // console.log(products[0]?.name);
     // <PhoneDetails event={product}></PhoneDetails>
 
+
+//     <Grid key={users.id} item
+//          xs={12} sm={6} md={4} lg={4} xl={3}
+//      >
+//       <PplCard
+//          key={users.id} email={users.email} firstname={users.first_name}
+//              lastname={users.last_name} avatar={users.avatar}
+//          />
+//      </Grid>
+
+    const classes = useStyles();
+
     return (
-        <div>
-            <h3>This is Home</h3>
+        <Container maxWidth="lg">
+        <div className={classes.root}>
+            <h1 style={{textAlign:'center'}}>Welcome to PhonoMania</h1>
+            <Grid container spacing={4}>
             {
                 products.loading &&
-                <img src={loadingImage} alt="loading Image"/>
+                <img style={{width:'100%', textAlign:'center'}} src={loadingImage} alt="loading Image"/>
             }
             {
-                products.data&&products.data.map(product => <PhoneDetails props={product}></PhoneDetails> )
+                products.data&&products.data.map(product =>
+                    <Grid item
+                    xs={12} sm={6} md={4}
+                    >
+                        <PhoneDetails props={product}></PhoneDetails>
+                    </Grid> 
+                    )
             }
+            </Grid>
         </div>
+        </Container>
     );
 };
 

@@ -38,9 +38,9 @@ function App() {
             <Route path="/deals">
               <Deals></Deals>
             </Route>
-            <Route path="/orders">
+            <PrivateRoute path="/orders">
               <Orders></Orders>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login></Login>
             </Route>

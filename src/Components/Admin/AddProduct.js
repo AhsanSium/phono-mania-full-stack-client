@@ -76,12 +76,10 @@ const AddProduct = () => {
             <h3>Add Product</h3>
             <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
                 
-                <TextField id="standard-basic" variant="outlined" name="name" placeholder="NAME" ref={register}/>
-                {/* <input name="name" placeholder="NAME" defaultValue="Name" ref={register} /> */}
+                <input name="name" placeholder="NAME" defaultValue="Name" ref={register} />
 
                 <br/>
-                <TextField id="outlined-basic" variant="outlined" name="price" placeholder="PRICE" ref={register}/>
-                {/* <input name="price" placeholder="PRICE" ref={register}  /> */}
+                <input name="price" placeholder="PRICE" ref={register}  />
                 <br/>
                 {
                     console.log(image.isUploading)
@@ -90,13 +88,11 @@ const AddProduct = () => {
                     image.isUploading &&
                     <p>Image Uploading</p>
                 }
-                <TextField id="outlined-basic" variant="outlined" name="exampleRequired" type="file" onChange={handleImageUpload} />
                 
-                {/* <input name="exampleRequired" type="file" onChange={handleImageUpload} /> */}
-                {/* {errors.exampleRequired && <span>This field is required</span>} */}
+                <input name="exampleRequired" type="file" onChange={handleImageUpload} />
+                {errors.exampleRequired && <span>This field is required</span>}
                 <br/>
-                <TextField id="outlined-basic" variant="outlined"  type="submit" />
-                {/* <input type="submit" /> */}
+                <input type="submit" />
             </form>
             </Container>
             </Container>

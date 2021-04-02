@@ -1,4 +1,6 @@
+import { Button } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router';
 import AdminBar from './AdminBar';
 
 const ManageProduct = () => {
@@ -7,10 +9,10 @@ const ManageProduct = () => {
         loading: false,
         data: null,
     });
-    // const [appState, setAppState] = useState({
-    //     loading: false,
-    //     data: null,
-    //   });
+
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
 
     useEffect(()=>{
         setProducts({ loading: true });
@@ -31,7 +33,8 @@ const ManageProduct = () => {
         .then(res => res.json())
         .then(result => {
             console.log(result, 'Deleted');
-            // setProducts(products);
+            alert('Product Deleted');
+            history.replace(from);
         })
     }
 
@@ -44,7 +47,7 @@ const ManageProduct = () => {
                 <h3>Loading Products</h3>
             }
             {
-                products.data&&products.data.map(product => <li>Name:{product.name} Price:  {product.price} <button onClick={()=>handleDelete(product._id)}>Delete</button> </li> )
+                products.data&&products.data.map(product => <li style={{padding:'10px'}}>Name:{product.name} Price:  {product.price} <Button  size="small" variant="contained" color="secondary" onClick={()=>handleDelete(product._id)}>Delete </Button> </li> )
             }
         </div>
     );

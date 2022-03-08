@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { UserContext } from '../../App';
 import { useForm } from "react-hook-form";
-import { Container } from '@material-ui/core';
+import { Container, Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Table from '@material-ui/core/Table';
@@ -53,7 +53,7 @@ const CheckOut = () => {
                 console.log(err);
             })
 
-    }, [setProduct])
+    }, [setProduct]);
 
     // console.log(product.data?.name);
     const name = product.data?.name;
@@ -80,15 +80,15 @@ const CheckOut = () => {
 
 
     return (
-        <Container maxWidth="lg">
-            <h3>CheckOut</h3>
+        <Container maxWidth="lg" style={{marginTop:'10rem'}}>
+            <h3>Order Page</h3>
                 <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
+                    <Table className={classes.table} aria-label="simple table" style={{textAlign:'center'}}>
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name: </TableCell>
                                 <TableCell>Order Id: </TableCell>
-                                <TableCell>Image: </TableCell>
+                                <TableCell style={{textAlign:'center'}}>Image: </TableCell>
                                 <TableCell>Price: </TableCell>
                             </TableRow>
                         </TableHead>
@@ -96,7 +96,9 @@ const CheckOut = () => {
                             <TableRow>
                             <TableCell>{name}</TableCell>
                                 <TableCell>{orderId}</TableCell>
-                                <TableCell><img width="20%" src={image} alt="" /> </TableCell>
+                                <TableCell style={{textAlign:'center'}}>
+                                    <img width="20%" src={image} alt="" /> 
+                                </TableCell>
                                 <TableCell>{price} </TableCell>
                             </TableRow>
                         </TableBody>
@@ -105,17 +107,26 @@ const CheckOut = () => {
 
             <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
                 
-                <input name="name" defaultValue={loggedInUser.name} placeholder="Name" ref={register({ required: true })} />
+                <input name="name" defaultValue={loggedInUser.name} placeholder="Name" ref={register({ required: true })} 
+                style={{border:'1px dotted cyan', padding:'8px', borderRadius:'10px', background:'white'}}
+                />
                 {errors.name && <span>This field is required</span>}
                 <br/>
-                <input name="Email" placeholder="E-mail" defaultValue={loggedInUser.email} ref={register({ required: true })} />
+                <input name="Email" placeholder="E-mail" defaultValue={loggedInUser.email} ref={register({ required: true })} 
+                style={{border:'1px dotted cyan', padding:'8px', borderRadius:'10px', background:'white'}}
+                />
                 {errors.Email && <span>This field is required</span>}
                 <br/>
 
-                <input name="address" placeholder="Address" ref={register({ required: true })} />
+                <textarea name="address" placeholder="Address" ref={register({ required: true })} 
+                style={{border:'1px dotted cyan', padding:'8px', borderRadius:'10px', background:'white'}}
+                />
                 {errors.address && <span>This field is required</span>}                
                 <br/>
-                <input type="submit" />
+                
+                <input type="submit" 
+                style={{border:'1px dotted cyan', padding:'5px', borderRadius:'10px', background:'white', cursor:'pointer'}}
+                />
             
             </form>
         </Container>

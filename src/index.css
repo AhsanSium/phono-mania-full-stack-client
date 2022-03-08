@@ -1,18 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  /* overflow-x: visible;
+  z-index: 100; */
+}
+
 body {
   margin: 0;
-  font-family: 'Yatra One', sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./images/background.jpg);
+  /* background-image: url(./images/background.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #464646;
+  background-color: #464646; */
+  /* overflow: auto !important; */
+}
 
+a {
+  text-decoration: none;
+  color: rgb(35, 130, 255);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+input {
+  border: none;
+  background: transparent;
+}
+
+li {
+  list-style-type: none;
 }

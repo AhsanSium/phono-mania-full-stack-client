@@ -55,7 +55,7 @@ const Login = () => {
     }
 
     return (
-        <Container style={{textAlign:'center'}} maxWidth='lg'>
+        <Container style={{textAlign:'center', marginTop:'10rem'}} maxWidth='lg'>
             <h2>Login Page</h2>
             <Button variant="contained" color="secondary" onClick={handleGoogleSignIn}>Google Sign In</Button>
         </Container>

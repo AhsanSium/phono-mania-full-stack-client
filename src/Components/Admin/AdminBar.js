@@ -14,6 +14,9 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Link } from 'react-router-dom';
 import { Container } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import clsx from 'clsx';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
@@ -41,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(3),
     },
+    list: {
+        width: 250,
+      },
+      fullList: {
+        width: 'auto',
+      },
 }));
 
 
@@ -49,51 +58,53 @@ const AdminBar = () => {
 
     const classes = useStyles();
 
+    const [state, setState] = React.useState({
+        right: false,
+    });
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+    
+        setState({ ...state, [anchor]: open });
+    };
+
     return (
-            
-            <Container maxWidth="md">
-                {/* <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap>
-                        Admin Panel
-                    </Typography>
-                </Toolbar>
-            </AppBar> */}
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                anchor="left"
-            >
-                <div className={classes.toolbar} />
-                <List style={{marginTop:'25%'}}>
-                    {/* {['Inbox', 'Starred', 'Send email'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+        <div>
+            {['right'].map((anchor) => (
+            <React.Fragment key={anchor}>
+                <Button onClick={toggleDrawer(anchor, true)}> <MenuIcon /> Menu </Button>
+                    <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+
+                    <div className={classes.toolbar} />
+                    <List style={{marginTop:'25%'}}>
+                        {/* {['Inbox', 'Starred', 'Send email'].map((text, index) => (
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        ))} */}
+                        <Link style={{textDecoration:'none',color:'#2b4fff'}} to="/addProduct">
+                        <ListItem button >
+                            <ListItemText primary={'Add Product'} />
                         </ListItem>
-                    ))} */}
-                    <Link style={{textDecoration:'none',color:'#2b4fff'}} to="/addProduct">
-                    <ListItem button >
-                        <ListItemText primary={'Add Product'} />
-                    </ListItem>
-                    </Link>
-                    <Link style={{textDecoration:'none',color:'#ff1f67'}} to="/manageProduct">
-                    <ListItem button >
-                        <ListItemText primary={'Manage Product'} />
-                    </ListItem>
-                    </Link>
-                    <Link style={{textDecoration:'none',color:'#007979'}} to="/editProduct">
-                    <ListItem button >
-                        <ListItemText primary={'Edit Product'} />
-                    </ListItem>
-                    </Link>
-                </List>
-                
-            </Drawer>
-            </Container>
+                        </Link>
+                        <Link style={{textDecoration:'none',color:'#ff1f67'}} to="/manageProduct">
+                        <ListItem button >
+                            <ListItemText primary={'Manage Product'} />
+                        </ListItem>
+                        </Link>
+                        <Link style={{textDecoration:'none',color:'#007979'}} to="/editProduct">
+                        <ListItem button >
+                            <ListItemText primary={'Edit Product'} />
+                        </ListItem>
+                        </Link>
+                    </List>
+                </Drawer>
+            </React.Fragment>
+            ))}
+      </div>
     );
 };
 

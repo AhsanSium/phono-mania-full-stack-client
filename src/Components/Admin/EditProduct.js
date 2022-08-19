@@ -3,9 +3,11 @@ import AdminBar from './AdminBar';
 
 const EditProduct = () => {
     return (
-        <div style={{marginLeft:'50%'}}>
+        <div style={{marginLeft:'10%', marginTop:'15rem'}}>
             <AdminBar></AdminBar>
-            <h3>This Is Edit Product</h3>
+            <div style={{marginLeft:'50%'}}>
+                <h3>Edit Product</h3>
+            </div>
         </div>
     );
 };

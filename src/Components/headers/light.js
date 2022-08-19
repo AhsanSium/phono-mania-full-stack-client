@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from 'react';
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -6,12 +6,14 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-import logo from "../../images/logo.png";
+import logo from "../../images/logo resized.png";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 import { AppBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart.js";
+import { UserContext } from '../../App.js';
+import userImage from '../../images/user-icon2.png';
 
 const Header = tw.header`
   flex justify-between items-center
@@ -36,6 +38,13 @@ export const PrimaryLink = tw(NavLink)`
   border-b-0
 `;
 
+export const LogoutLink = tw(NavLink)`
+  lg:mx-0
+  px-8 py-3 rounded bg-transparent text-gray-100
+  hocus:bg-red-500 hocus:text-gray-200 focus:shadow-outline
+  border-b-0 cursor-pointer
+`;
+
 export const LogoLink = styled(NavLink)`
   ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
 
@@ -43,6 +52,7 @@ export const LogoLink = styled(NavLink)`
     ${tw`w-10 mr-3`}
   }
 `;
+
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
 export const NavToggle = tw.button`
@@ -61,6 +71,17 @@ export const DesktopNavLinks = tw.nav`
 
 export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
 
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  const handleLogOut = () => {
+    if (window.confirm('Are You Sure, You want to Logout?')) {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
+      window.location.reload();
+      setLoggedInUser('');
+    }
+  }
+
   const defaultLinks = [
     <NavLinks key={1}>
       <Link to="/shop">
@@ -71,15 +92,35 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/#">Blog</NavLink>
       <NavLink href="/#">About</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
+      <Link to="/cart">
+        <NavLink>
+          Cart
+        </NavLink>
+      </Link>
       {/* <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink> */}
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/#">Sign Up</PrimaryLink>
+      {
+        loggedInUser && Object.keys(loggedInUser).length === 0
+          && Object.getPrototypeOf(loggedInUser) === Object.prototype ?
+          <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}
+            href="/login"
+          >
+            Sign In
+          </PrimaryLink>
+          :
+          <LogoutLink css={tw`rounded-full`} onClick={handleLogOut}>
+            <img data-tooltip-target="tooltip-default" src={userImage} style={{ width: 'auto' }} />
+            <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+              Log Out
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </LogoutLink>
 
-      <Link to="/cart">
-        <Cart />
-      </Link>
-      
+
+      }
+
+
     </NavLinks>
   ];
 
@@ -87,12 +128,12 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
-      <Link to='/'>
-        <LogoLink>
-            <img src={logo} alt="logo" />
-            PhonoMania
-        </LogoLink>
-      </Link>
+    <Link to='/'>
+      <LogoLink >
+        <img src={logo} alt="logo" style={{ width: '100%' }} />
+        PhonoMania
+      </LogoLink>
+    </Link>
   );
 
   logoLink = logoLink || defaultLogoLink;
@@ -100,7 +141,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   return (
     <Header className={className || "header-dark"}>
-      <AppBar style={{backgroundColor:'white', border:'none', padding:'1.4rem',}}>
+      <AppBar style={{ backgroundColor: 'white', border: 'none', paddingLeft: '5rem', paddingRight: '2rem', paddingTop: '.5rem', paddingBottom: '.5rem' }}>
         <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
           {logoLink}
           {links}

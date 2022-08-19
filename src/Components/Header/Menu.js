@@ -14,71 +14,71 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    navLink:{
-        textDecoration:'none',
-        color:'white',
-        margin:'0',
-        padding:'8px 15px',
-        borderRadius:'5px',
+    navLink: {
+        textDecoration: 'none',
+        color: 'white',
+        margin: '0',
+        padding: '8px 15px',
+        borderRadius: '5px',
         "&:hover": {
             background: "#163242",
-          }
+        }
     }
-    
+
 }));
 
 const Menu = () => {
 
     const classes = useStyles();
-    
+
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     return (
-            <div  className={classes.root}>
-                <AppBar style={{  backgroundColor:'#3f84b58f'}} position="static">
-                    <Toolbar>
-                        <NavLink to='/'>
-                        <img style={{width:'100%',margin:'10px'}} src={logo} alt=""/>
-                               
-                            </NavLink>
-                        <Typography style={{width:'100%'}} variant="h6">
+        <div className={classes.root}>
+            <AppBar style={{ backgroundColor: '#3f84b58f' }} position="static">
+                <Toolbar>
+                    <NavLink to='/'>
+                        <img style={{ width: '100%', margin: '10px' }} src={logo} alt="" />
 
-                        </Typography>
+                    </NavLink>
+                    <Typography style={{ width: '100%' }} variant="h6">
 
-                        
-                            <NavLink className={classes.navLink} to='/'>
-                                Home
-                            </NavLink>
-                       
-                        
-                        
-                            <NavLink className={classes.navLink} to='/admin'>
-                                Admin
-                            </NavLink>
-                            
-                        
-                        
-                            <NavLink className={classes.navLink} to='/orders'>
-                                Orders
-                            </NavLink>
-                            
-                        
-                        
-                            <NavLink className={classes.navLink} to='/deals'>
-                                Deals
-                            </NavLink>
-                            
-                       
-                
-                            <NavLink className={classes.navLink} to='/login'>
-                                {
-                                    loggedInUser.email? loggedInUser.name : 'Login'
-                                }
-                            </NavLink>
-                            
-                    </Toolbar>
-                </AppBar>
-            </div>
+                    </Typography>
+
+
+                    <NavLink className={classes.navLink} to='/'>
+                        Home
+                    </NavLink>
+
+
+
+                    <NavLink className={classes.navLink} to='/admin'>
+                        Admin
+                    </NavLink>
+
+
+
+                    <NavLink className={classes.navLink} to='/orders'>
+                        Orders
+                    </NavLink>
+
+
+
+                    <NavLink className={classes.navLink} to='/deals'>
+                        Deals
+                    </NavLink>
+
+
+
+                    <NavLink className={classes.navLink} to='/login'>
+                        {
+                            loggedInUser.email ? loggedInUser.name : 'Login'
+                        }
+                    </NavLink>
+
+                </Toolbar>
+            </AppBar>
+        </div>
     );
 };
 

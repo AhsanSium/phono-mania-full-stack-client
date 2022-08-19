@@ -67,9 +67,7 @@ const AddProduct = () => {
     const classes = useStyles();
 
     return (
-        <div>
-            
-            
+        <div style={{marginTop:'15rem'}}>          
             <Container maxWidth="lg">
             <AdminBar></AdminBar>
             <Container style={{marginLeft:'20%'}} maxWidth="lg">

@@ -39,16 +39,18 @@ const ManageProduct = () => {
     }
 
     return (
-        <div style={{marginLeft:'20%'}}>
-            <AdminBar></AdminBar>
-            <h3>This Is Manage Product</h3>
-            {
-                products.loading &&
-                <h3>Loading Products</h3>
-            }
-            {
-                products.data&&products.data.map(product => <li style={{padding:'10px'}}>Name:{product.name} Price:  {product.price} <Button  size="small" variant="contained" color="secondary" onClick={()=>handleDelete(product._id)}>Delete </Button> </li> )
-            }
+        <div style={{marginTop:'15rem'}}>
+            <div style={{marginLeft:'20%'}}>
+                <AdminBar></AdminBar>
+                <h3>Manage Product</h3>
+                {
+                    products.loading &&
+                    <h3>Loading Products</h3>
+                }
+                {
+                    products.data&&products.data.map(product => <li style={{padding:'10px'}}>Name:{product.name} Price:  {product.price} <Button  size="small" variant="contained" color="secondary" onClick={()=>handleDelete(product._id)}>Delete </Button> </li> )
+                }
+            </div>
         </div>
     );
 };

@@ -3,8 +3,8 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import { SectionHeading } from "components/misc/Headings.js";
-import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
+import { SectionHeading } from "../../Components/misc/Headings";
+import { Container, ContentWithPaddingXl } from "../../Components/misc/Layouts.js";
 
 const Row = tw.div`flex flex-col lg:flex-row -mb-10`;
 const Heading = tw(SectionHeading)`text-left lg:text-4xl xl:text-5xl`;
@@ -59,10 +59,10 @@ export default () => {
   const popularPosts = [
     {
       postImageSrc:
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=640&q=80",
+        "https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
       authorImageSrc:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
-      title: "Tips on how to travel safely in foreign countries",
+      title: "Lorem ipsum dolor sit amet",
       description:
         "Lorem ipsum dolor sit amet, consecteturious adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua now ele.",
       authorName: "Charlotte Delos",
@@ -71,10 +71,10 @@ export default () => {
     },
     {
       postImageSrc:
-        "https://images.unsplash.com/photo-1563784462041-5f97ac9523dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=640&q=80",
+        "https://images.unsplash.com/photo-1480694313141-fce5e697ee25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       authorImageSrc:
         "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
-      title: "Enjoying the beach life while on a vacation",
+      title: "Lorem ipsum dolor sit amet, consecteturious adipiscing elit",
       description:
         "Lorem ipsum dolor sit amet, consecteturious adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua now ele.",
       authorName: "Adam Cuppy",
@@ -85,37 +85,36 @@ export default () => {
 
   const recentPosts = [
     {
-      postImageSrc:
-        "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80",
-      title: "Getting the most out of your vacation",
+      postImageSrc: "https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+      title: "Lorem ipsum dolor sit amet, consecteturious adipiscing elit",
       authorName: "Aaron Patterson",
       url: "https://reddit.com"
     },
     {
       postImageSrc:
-        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80",
-      title: "Choosing the perfect Safaris in Africa",
+        "https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      title: "Lorem ipsum dolor sit amet, consecteturious adipiscing elit",
       authorName: "Sam Phipphen",
       url: "https://reddit.com"
     },
     {
       postImageSrc:
         "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80",
-      title: "Hiking during the monsoon in Asia",
+      title: "Lorem ipsum dolor sit amet, consecteturious adipiscing elit",
       authorName: "Tony Hawk",
       url: "https://timerse.com"
     },
     {
       postImageSrc:
         "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80",
-      title: "Must carry items while travelling to Thailand",
+      title: "Lorem ipsum dolor sit amet, consecteturious adipiscing elit",
       authorName: "Himali Turn",
       url: "https://timerse.com"
     },
     {
       postImageSrc:
         "https://images.unsplash.com/photo-1546971587-02375cbbdade?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=641&q=80",
-      title: "An extremely funny trip to the Swiss Alps",
+      title: "Lorem ipsum dolor sit amet, consecteturious adipiscing elit",
       authorName: "Naomi Watts",
       url: "https://timerse.com"
     },
@@ -152,13 +151,13 @@ export default () => {
             <Heading>Recent Posts</Heading>
             <PostsContainer>
               {recentPosts.map((post, index) => (
-              <Post key={index} href={post.url} className="group">
-                <PostTextContainer>
-                  <Title>{post.title}</Title>
-                  <AuthorName>{post.authorName}</AuthorName>
-                </PostTextContainer>
-                <Image imageSrc={post.postImageSrc} />
-              </Post>
+                <Post key={index} href={post.url} className="group">
+                  <PostTextContainer>
+                    <Title>{post.title}</Title>
+                    <AuthorName>{post.authorName}</AuthorName>
+                  </PostTextContainer>
+                  <Image imageSrc={post.postImageSrc} />
+                </Post>
               ))}
             </PostsContainer>
           </RecentPostsContainer>

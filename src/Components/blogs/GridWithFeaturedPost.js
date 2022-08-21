@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, ContentWithPaddingXl } from "components/misc/Layouts";
+import { Container, ContentWithPaddingXl } from "../../Components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro";
-import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings";
-import { SectionDescription } from "components/misc/Typography";
-import { ReactComponent as SvgDotPatternIcon } from "images/dot-pattern.svg";
+import { SectionHeading, Subheading as SubheadingBase } from "../../Components/misc/Headings";
+import { SectionDescription } from "../../Components/misc/Typography";
+import { ReactComponent as SvgDotPatternIcon } from "../../images/dot-pattern.svg";
 
 const HeadingContainer = tw.div`text-center`;
 const Subheading = tw(SubheadingBase)`mb-4`;
@@ -18,7 +18,7 @@ const PostImage = styled.div`
   ${props => css`background-image: url("${props.imageSrc}");`}
   ${tw`h-64 sm:h-80 bg-center bg-cover rounded-t`}
 `;
-const PostText = tw.div`flex-1 px-6 py-8` 
+const PostText = tw.div`flex-1 px-6 py-8`
 const PostTitle = tw.h6`font-bold group-hocus:text-primary-500 transition duration-300 `;
 const PostDescription = tw.p``;
 const AuthorInfo = tw.div`flex`;
@@ -66,10 +66,10 @@ export default ({
   posts = [
     {
       postImageSrc:
-        "https://images.unsplash.com/photo-1563784462041-5f97ac9523dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
+        "https://images.unsplash.com/photo-1526038335545-4b96864eaee7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
       authorImageSrc:
         "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.95&w=512&h=512&q=80",
-      title: "Enjoying the beach life while on a vacation",
+      title: "Lorem ipsum dolor sit amet",
       description:
         "Lorem ipsum dolor sit amet, consecteturious adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua now ele.",
       authorName: "Adam Cuppy",
@@ -79,29 +79,29 @@ export default ({
     },
     {
       postImageSrc:
-        "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Getting the most out of your vacation",
+        "https://images.unsplash.com/photo-1592014600126-cdb2cec39b7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1121&q=80",
+      title: "Lorem ipsum dolor sit amet",
       authorName: "Aaron Patterson",
       url: "https://reddit.com"
     },
     {
       postImageSrc:
         "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Choosing the perfect Safaris in Africa",
+      title: "Lorem ipsum dolor sit amet",
       authorName: "Sam Phipphen",
       url: "https://reddit.com"
     },
     {
       postImageSrc:
-        "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Hiking during the monsoon in Asia",
+        "https://images.unsplash.com/photo-1621330396167-b3d451b9b83b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      title: "Lorem ipsum dolor sit amet",
       authorName: "Tony Hawk",
       url: "https://timerse.com"
     },
     {
       postImageSrc:
         "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Must carry items while travelling to Thailand",
+      title: "Lorem ipsum dolor sit amet",
       authorName: "Himali Turn",
       url: "https://timerse.com"
     }

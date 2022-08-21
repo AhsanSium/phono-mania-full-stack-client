@@ -317,7 +317,7 @@ const Home = ({ fetchData, shop }) => {
     };
 
     return (
-        <div style={{ minHeight: '1200px' }}>
+        <div style={{ minHeight: '1200px', paddingBottom: '15vh' }}>
             <AutoplaySlider
                 play={true}
                 cancelOnInteraction={false}

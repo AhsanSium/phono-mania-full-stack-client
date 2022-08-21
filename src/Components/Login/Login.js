@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase-config';
@@ -15,7 +15,7 @@ import logo from "../../images/logo.png";
 import googleIconImageSrc from "../../images/google-icon.png";
 import twitterIconImageSrc from "../../images/twitter-icon.png";
 import { ReactComponent as SignUpIcon } from "feather-icons/dist/icons/user-plus.svg";
-import Alert from '@mui/material/Alert';
+import SnackBarAlert from '../misc/SnackBarAlert';
 
 
 if (!firebase.apps.length) {
@@ -100,6 +100,9 @@ const Login = ({
         email: '',
         password: ''
     });
+    const [open, setOpen] = useState(false);
+    const myContainer = useRef(null);
+    const [alert, setAlert] = useState({ alertMessage: '', alertStatus: '' })
 
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
@@ -108,21 +111,32 @@ const Login = ({
     }
 
 
-
     const handleGoogleSignIn = () => {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleProvider).then(function (result) {
             const { displayName, email } = result.user;
             const signedInUser = { name: displayName, email }
             setLoggedInUser(signedInUser);
-            // history.replace(from);
-            //console.log(loggedInUser);
-            alert('Logged In ', loggedInUser.email);
+            console.log(result);
+            //alert('Logged In ', loggedInUser.email);
+            setUserToSession(signedInUser);
             storeAuthToken();
+            setOpen(true)
+            const newAlert = {
+                alertMessage: "Sign iN Success, Welcome " + displayName,
+                alertStatus: 'success'
+            }
+            setAlert(newAlert)
+            history.replace(from);
         }).catch(function (error) {
             const errorMessage = error.message;
             console.log(errorMessage);
-            alert(errorMessage);
+            setOpen(true)
+            const newAlert = {
+                alertMessage: errorMessage,
+                alertStatus: 'error'
+            }
+            setAlert(newAlert)
         });
     }
 
@@ -187,26 +201,31 @@ const Login = ({
 
                     // console.log(loggedInUser);
 
-                    alert(`Welcome ${loginName}`);
+                    setOpen(true)
+                    const newAlert = {
+                        alertMessage: "Sign Up Success, Welcome " + loginName,
+                        alertStatus: 'success'
+                    }
+                    setAlert(newAlert)
                     // ...
                 })
                 .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
                     //alert(errorMessage, 'Error Code ', errorCode);
                     // console.log(error);
                     // ..
-                    return <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                            {error.message}
-                        </Alert>
-                    </Snackbar>
+                    setOpen(true)
+                    const newAlert = {
+                        alertMessage: error.message,
+                        alertStatus: 'error'
+                    }
+                    setAlert(newAlert)
                 });
         }
 
         if (!newUser) {
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(res => {
+                    console.log("Firebase Error Response", res);
                     const user = res.user;
                     // console.log(user);
 
@@ -216,27 +235,48 @@ const Login = ({
                     const signedInUser = { name: displayName, email, admin: false }
                     setLoggedInUser(signedInUser);
                     updateUserName(name);
-                    storeAuthToken();
                     setUserToSession(signedInUser);
+                    setOpen(true)
+                    const newAlert = {
+                        alertMessage: "Sign In Successful",
+                        alertStatus: 'success'
+                    }
+                    setAlert(newAlert)
+                    storeAuthToken();
 
                     // console.log(loggedInUser);
-
-                    alert('Logged In ', loggedInUser.email);
+                    // alert('Logged In ', loggedInUser.email);
                 })
                 .catch((error) => {
-                    const newUserInfo = {};
+                    console.log("Email Login Error", error);
+                    let newUserInfo = {
+                        error: '',
+                        success: true
+                    };
                     newUserInfo.error = error.message;
                     newUserInfo.success = false;
                     setLoggedInUser(newUserInfo);
-                    return <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                            {error.message}
-                        </Alert>
-                    </Snackbar>
-                    //alert(error.message);
+                    console.log(open, "OPEN", myContainer)
+                    setOpen(true)
+                    const newAlert = {
+                        alertMessage: error.message,
+                        alertStatus: 'error'
+                    }
+                    setAlert(newAlert)
+                    // snackbarFunction(myContainer, error.message, 'error', open, setOpen);
+
+                    // render(
+                    //     <SnackBarAlert ref={myContainer} message={error.message} status={'error'} open={open} setOpen={setOpen} />
+                    // )
+                    // console.log(loggedInUser);
+                    // alert(error.message);
                 });
         }
     }
+
+    // const snackbarFunction = (ref, message, status, open, setOpen) => {
+    //     return <SnackBarAlert ref={ref} message={message} status={status} open={open} setOpen={setOpen} />
+    // }
 
 
     const updateUserName = name => {
@@ -264,20 +304,6 @@ const Login = ({
                 // Handle error
             });
     }
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClick = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
 
 
     return (
@@ -345,6 +371,7 @@ const Login = ({
                                     </p>
                                 </p>
                             </FormContainer>
+                            <SnackBarAlert message={alert.alertMessage} status={alert.alertStatus} open={open} setOpen={setOpen} />
                         </MainContent>
                     </MainContainer>
                     <IllustrationContainer>

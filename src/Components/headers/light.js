@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -40,8 +40,8 @@ export const PrimaryLink = tw(NavLink)`
 
 export const LogoutLink = tw(NavLink)`
   lg:mx-0
-  px-8 py-3 rounded bg-transparent text-gray-100
-  hocus:bg-red-500 hocus:text-gray-200 focus:shadow-outline
+  px-8 py-3 rounded bg-transparent text-white bg-red-400
+  hocus:bg-red-600 hocus:text-gray-200 focus:shadow-outline
   border-b-0 cursor-pointer
 `;
 
@@ -81,6 +81,11 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       setLoggedInUser('');
     }
   }
+  useEffect(() => {
+    if ((sessionStorage.getItem('user'))) {
+      setLoggedInUser(JSON.parse(sessionStorage.getItem('user')));
+    }
+  }, [])
 
   const defaultLinks = [
     <NavLinks key={1}>
@@ -89,33 +94,34 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           Shop
         </NavLink>
       </Link>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
+      <NavLink href="/blog">Blog</NavLink>
+      <NavLink href="/about-us">About</NavLink>
+      <NavLink href="/contact-us">Contact Us</NavLink>
       <Link to="/cart">
         <NavLink>
           Cart
         </NavLink>
       </Link>
+      <NavLink href="/admin">Admin</NavLink>
       {/* <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink> */}
       {
-        loggedInUser && Object.keys(loggedInUser).length === 0
-          && Object.getPrototypeOf(loggedInUser) === Object.prototype ?
+        loggedInUser.email || sessionStorage.getItem("token") ?
+          <LogoutLink css={tw`rounded-full`} onClick={handleLogOut}>
+            {/* <img data-tooltip-target="tooltip-default" src={userImage} style={{ width: 'auto' }} />
+            <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+              Log Out
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div> */}
+            Log Out
+          </LogoutLink>
+          :
           <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}
             href="/login"
           >
             Sign In
           </PrimaryLink>
-          :
-          <LogoutLink css={tw`rounded-full`} onClick={handleLogOut}>
-            <img data-tooltip-target="tooltip-default" src={userImage} style={{ width: 'auto' }} />
-            <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-              Log Out
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </LogoutLink>
 
 
       }

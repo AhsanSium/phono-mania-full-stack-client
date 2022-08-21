@@ -22,6 +22,10 @@ import CartPage from './Components/CartPage/CartPage';
 import { Button } from '@material-ui/core';
 import MultiCheckout from './Components/CheckOut/MultiCheckout';
 import SingleItem from './Components/Cart/SingleItem';
+import PMBlog from './Components/blogs/PMBlog';
+import './App.css';
+import AboutUs from './Components/AboutUs/AboutUs';
+import ContactUs from './Components/ContactUs/ContactUs';
 
 export const UserContext = createContext();
 
@@ -32,68 +36,77 @@ function App() {
   return (
     <div>
       <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <Router>
-        <div>
-        <Header />
-          {/* <Menu></Menu> */}
-          {/* A <Switch> looks through its children <Route>s and
+        <Router>
+          <div>
+            <Header />
+            {/* <Menu></Menu> */}
+            {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-          <Switch>
-            <Route exact path="/shop">
-              <Home />
-            </Route>
-            <Route exact path="/home">
-              <Home2/>
-            </Route>
-            <Route exact path="/">
-              <Home2/>
-            </Route>
-            <Route path="/deals">
-              <Deals></Deals>
-            </Route>
-            <Route path="/cart">
-              <CartPage />
-            </Route>
-            <PrivateRoute path="/orders">
-              <Orders></Orders>
-            </PrivateRoute>
-            <Route path="/login">
-              <Login></Login>
-            </Route>
-            <Route path="/single-product">
-              <SingleItem />
-            </Route>
-            <PrivateRoute path="/admin">
-              <Admin></Admin>
-            </PrivateRoute>
-            <PrivateRoute path="/addProduct">
-              <AddProduct></AddProduct>
-            </PrivateRoute>
-            <PrivateRoute path="/editProduct">
-              <EditProduct></EditProduct>
-            </PrivateRoute>
-            <PrivateRoute path="/manageProduct">
-              <ManageProduct></ManageProduct>
-            </PrivateRoute>
-            <PrivateRoute path="/productOrders/:orderId">
-              <CheckOut></CheckOut>
-            </PrivateRoute>
-            <PrivateRoute path="/checkout">
-              <MultiCheckout></MultiCheckout>
-            </PrivateRoute>
-            <Route  path="*">
-              <div style={{marginTop:'15rem', textAlign:'center'}}>
-                <h3 >404 Error <br/> Page Not Found</h3>
-                <Link to="/">
-                  <Button color={"secondary"}>
-                    Back To Home
-                  </Button>
-                </Link>
-              </div>
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+            <Switch>
+              <Route exact path="/shop">
+                <Home />
+              </Route>
+              <Route exact path="/home">
+                <Home2 />
+              </Route>
+              <Route exact path="/">
+                <Home2 />
+              </Route>
+              <Route path="/deals">
+                <Deals></Deals>
+              </Route>
+              <Route path="/blog">
+                <PMBlog />
+              </Route>
+              <Route path="/about-us">
+                <AboutUs />
+              </Route>
+              <Route path="/contact-us">
+                <ContactUs />
+              </Route>
+              <Route path="/cart">
+                <CartPage />
+              </Route>
+              <PrivateRoute path="/orders">
+                <Orders></Orders>
+              </PrivateRoute>
+              <Route path="/login">
+                <Login></Login>
+              </Route>
+              <Route path="/single-product">
+                <SingleItem />
+              </Route>
+              <PrivateRoute path="/admin">
+                <Admin></Admin>
+              </PrivateRoute>
+              <PrivateRoute path="/addProduct">
+                <AddProduct></AddProduct>
+              </PrivateRoute>
+              <PrivateRoute path="/editProduct">
+                <EditProduct></EditProduct>
+              </PrivateRoute>
+              <PrivateRoute path="/manageProduct">
+                <ManageProduct></ManageProduct>
+              </PrivateRoute>
+              <PrivateRoute path="/productOrders/:orderId">
+                <CheckOut></CheckOut>
+              </PrivateRoute>
+              <PrivateRoute path="/checkout">
+                <MultiCheckout></MultiCheckout>
+              </PrivateRoute>
+              <Route path="*">
+                <div style={{ marginTop: '15rem', textAlign: 'center' }}>
+                  <h3 >404 Error <br /> Page Not Found</h3>
+                  <Link to="/">
+                    <Button color={"secondary"}>
+                      Back To Home
+                    </Button>
+                  </Link>
+                </div>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </UserContext.Provider>
     </div>
   );

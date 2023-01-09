@@ -49,7 +49,7 @@ export const LogoLink = styled(NavLink)`
   ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
 
   img {
-    ${tw`w-10 mr-3`}
+    ${tw`w-10 mr-3 md:w-full sm:w-16`}
   }
 `;
 
@@ -97,12 +97,12 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/blog">Blog</NavLink>
       <NavLink href="/about-us">About</NavLink>
       <NavLink href="/contact-us">Contact Us</NavLink>
+      <NavLink href="/admin">Admin</NavLink>
       <Link to="/cart">
         <NavLink>
-          Cart
+          <Cart />
         </NavLink>
       </Link>
-      <NavLink href="/admin">Admin</NavLink>
       {/* <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink> */}
@@ -136,7 +136,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const defaultLogoLink = (
     <Link to='/'>
       <LogoLink >
-        <img src={logo} alt="logo" style={{ width: '100%' }} />
+        <img src={logo} alt="logo" />
         PhonoMania
       </LogoLink>
     </Link>

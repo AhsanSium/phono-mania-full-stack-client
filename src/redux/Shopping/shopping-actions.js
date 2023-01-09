@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as actionTypes from './shopping-types';
 
 export const addToCart = (itemID) => {
-    return{
+    return {
         type: actionTypes.ADD_TO_CART,
         payload: {
             id: itemID
@@ -10,7 +10,7 @@ export const addToCart = (itemID) => {
     }
 }
 
-export const removeFromCart = ( itemID ) => {
+export const removeFromCart = (itemID) => {
     return {
         type: actionTypes.REMOVE_FROM_CART,
         payload: {
@@ -58,24 +58,24 @@ const fetchDataFailure = error => {
 
 export const fetchData = () => {
     return (dispatch) => {
-        
+
         dispatch(fetchDataRequest())
 
-        axios.get('https://cherry-pie-50881.herokuapp.com/products')
-        .then (response => {
-            const data = response.data
-            dispatch(fetchDataSuccess(data))
-        })
-        .catch(error => {
-            const errorMsg = error.message;
-            dispatch(fetchDataFailure(errorMsg))
-            // console.log(errorMsg);
-            // setTimeout(()=>{
-            //     const reload = window.confirm(errorMsg + '\n Press OK to reload');
-            //     if(reload === true){
-            //         document.location.reload()
-            //     }
-            // }, 3000)
-        })
+        axios.get('https://phono-mania-server.onrender.com/products')
+            .then(response => {
+                const data = response.data
+                dispatch(fetchDataSuccess(data))
+            })
+            .catch(error => {
+                const errorMsg = error.message;
+                dispatch(fetchDataFailure(errorMsg))
+                // console.log(errorMsg);
+                // setTimeout(()=>{
+                //     const reload = window.confirm(errorMsg + '\n Press OK to reload');
+                //     if(reload === true){
+                //         document.location.reload()
+                //     }
+                // }, 3000)
+            })
     }
 }

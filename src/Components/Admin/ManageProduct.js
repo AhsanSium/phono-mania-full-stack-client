@@ -23,7 +23,7 @@ const ManageProduct = () => {
 
     useEffect(() => {
         setProducts({ loading: true });
-        fetch('https://cherry-pie-50881.herokuapp.com/products')
+        fetch('https://phono-mania-server.onrender.com/products')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -36,7 +36,7 @@ const ManageProduct = () => {
         if (window.confirm('Are You Sure, You want to Delete The Product?')) {
             console.log(id);
             if (loggedInUser.admin === true) {
-                fetch('https://cherry-pie-50881.herokuapp.com/delete/' + id, {
+                fetch('https://phono-mania-server.onrender.com/delete/' + id, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

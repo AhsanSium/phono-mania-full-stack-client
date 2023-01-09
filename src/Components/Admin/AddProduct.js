@@ -54,7 +54,7 @@ const AddProduct = () => {
             price: data.price,
             imageURL: image?.imageURL
         };
-        const url = 'https://cherry-pie-50881.herokuapp.com/addProduct';
+        const url = 'https://phono-mania-server.onrender.com/addProduct';
         console.log(eventData);
         console.log(data);
         fetch(url, {

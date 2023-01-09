@@ -21,17 +21,17 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        background:'#ccefff94',
-        padding:'15px',
-        borderRadius:'10px',
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },  
+        background: '#ccefff94',
+        padding: '15px',
+        borderRadius: '10px',
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
     },
-  }));
+}));
 
-const CartPage = ({cart, removeFromCart, adjustQty}) => {
+const CartPage = ({ cart, removeFromCart, adjustQty }) => {
 
     const classes = useStyles();
 
@@ -40,7 +40,7 @@ const CartPage = ({cart, removeFromCart, adjustQty}) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
 
-    useEffect(()=>{
+    useEffect(() => {
         let items = 0;
         let price = 0;
 
@@ -52,7 +52,7 @@ const CartPage = ({cart, removeFromCart, adjustQty}) => {
         setTotalPrice(price);
         setTotalItems(items);
 
-    },[cart, totalItems,totalPrice, setTotalPrice, setTotalItems]);
+    }, [cart, totalItems, totalPrice, setTotalPrice, setTotalItems]);
 
     // const increaseQty = (id) => {
     //     const match1 = cart.find(item => item._id === id ? item : []);
@@ -81,7 +81,7 @@ const CartPage = ({cart, removeFromCart, adjustQty}) => {
     //     const newProduct = { ...product };
     //     newProduct.isLoading = true;
     //     newProduct.id = orderId;
-    //     fetch('https://cherry-pie-50881.herokuapp.com/productById/' + orderId)
+    //     fetch('https://phono-mania-server.onrender.com/productById/' + orderId)
     //         .then(res => res.json())
     //         .then(data => {
     //             console.log(data);
@@ -105,7 +105,7 @@ const CartPage = ({cart, removeFromCart, adjustQty}) => {
     //     console.log(data);
     //     const orderDetails = {products:product.data, shipment:data, user:loggedInUser, orderTime:new Date(), email:loggedInUser.email};
     //     console.log(orderDetails);
-    //     fetch('https://cherry-pie-50881.herokuapp.com/addOrder', { 
+    //     fetch('https://phono-mania-server.onrender.com/addOrder', { 
     //         method: 'POST',
     //         headers:{'Content-Type':'application/json'},
     //         body: JSON.stringify(orderDetails)
@@ -119,18 +119,18 @@ const CartPage = ({cart, removeFromCart, adjustQty}) => {
     // };
 
     return (
-        <Container maxWidth="lg" style={{marginTop:'10rem'}}>
-            <h3 style={{textAlign:'center'}}>Cart</h3>
+        <Container maxWidth="lg" style={{ marginTop: '10rem' }}>
+            <h3 style={{ textAlign: 'center' }}>Cart</h3>
             <Grid container spacing={2}>
-               
+
                 <Grid item xs={12} md={8}>
-                <TableContainer component={Paper}>
+                    <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell> <h4>Name:</h4>  </TableCell>
                                     {/* <TableCell> <h4>Order Id:</h4> </TableCell> */}
-                                    <TableCell style={{textAlign:'center'}}> <h4>Image:</h4> </TableCell>
+                                    <TableCell style={{ textAlign: 'center' }}> <h4>Image:</h4> </TableCell>
                                     <TableCell> <h4>Quantity:</h4> </TableCell>
                                     <TableCell><h4>Price:</h4></TableCell>
                                     <TableCell><h4>Remove:</h4></TableCell>
@@ -138,99 +138,99 @@ const CartPage = ({cart, removeFromCart, adjustQty}) => {
                             </TableHead>
                             <TableBody>
                                 {
-                                    cart&&cart.map(item => 
+                                    cart && cart.map(item =>
                                         <TableRow>
-                                            <TableCell>{item.name&&item.name}</TableCell>
+                                            <TableCell>{item.name && item.name}</TableCell>
                                             {/* <TableCell style={{width:'20px'}}>{item._id}</TableCell> */}
-                                            <TableCell style={{textAlign:'center'}}><img width="30%" src={item.imageURL&&item.imageURL} alt="" /> </TableCell>
+                                            <TableCell style={{ textAlign: 'center' }}><img width="30%" src={item.imageURL && item.imageURL} alt="" /> </TableCell>
                                             <TableCell style={
                                                 {}
                                             }>
-                                            <Grid container>
+                                                <Grid container>
 
                                                     <Grid item>
-                                                    <span style={{
-                                                        fontSize:'18px',
-                                                        padding:'2px',
-                                                        
-                                                    }}>
-                                                    {item.qty&&item.qty}
-                                                    </span>
-                                                </Grid>
-                                                <Grid item>
-                                                    <AddCircleOutlineOutlinedIcon 
-                                                    style={{
-                                                        cursor:'pointer',
-                                                        color:'green',
-                                                    }}
-                                                    onClick={
-                                                        ()=>{
-                                                            adjustQty(item._id, item.qty + 1);
-                                                        }
-                                                    }
-                                                    />
+                                                        <span style={{
+                                                            fontSize: '18px',
+                                                            padding: '2px',
 
-                                                </Grid>
-                                                <Grid item>
-                                                    {
-                                                        item.qty > 0 &&
-                                                        <RemoveCircleOutlineOutlinedIcon 
-                                                        style={{
-                                                            cursor:'pointer',
-                                                            color:'grey'
-                                                        }}
-                                                        onClick={
-                                                            ()=>{
-                                                                adjustQty(item._id, item.qty - 1);
+                                                        }}>
+                                                            {item.qty && item.qty}
+                                                        </span>
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <AddCircleOutlineOutlinedIcon
+                                                            style={{
+                                                                cursor: 'pointer',
+                                                                color: 'green',
+                                                            }}
+                                                            onClick={
+                                                                () => {
+                                                                    adjustQty(item._id, item.qty + 1);
+                                                                }
                                                             }
-                                                        }
                                                         />
 
-                                                    }
+                                                    </Grid>
+                                                    <Grid item>
+                                                        {
+                                                            item.qty > 0 &&
+                                                            <RemoveCircleOutlineOutlinedIcon
+                                                                style={{
+                                                                    cursor: 'pointer',
+                                                                    color: 'grey'
+                                                                }}
+                                                                onClick={
+                                                                    () => {
+                                                                        adjustQty(item._id, item.qty - 1);
+                                                                    }
+                                                                }
+                                                            />
+
+                                                        }
+
+                                                    </Grid>
 
                                                 </Grid>
-                                                
-                                            </Grid>
-                                            
+
                                             </TableCell>
-                                            <TableCell>${item.qty*item.price} </TableCell>
+                                            <TableCell>${item.qty * item.price} </TableCell>
                                             <TableCell>
-                                                <Button onClick={()=>removeFromCart(item._id)}>
-                                                <HighlightOffIcon style={{ color: 'red' }} />
+                                                <Button onClick={() => removeFromCart(item._id)}>
+                                                    <HighlightOffIcon style={{ color: 'red' }} />
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
                                     )
                                 }
-                                
+
                             </TableBody>
                         </Table>
                     </TableContainer>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                <TableContainer component={Paper} style={{padding:'5px', textAlign:'center', paddingBottom:'2.20rem'}}>
-                    <h4>
-                       Cart Summary 
-                    </h4>
-                    <Grid container spacing={1} style={{padding:'10px'}}>
-                        <Grid item xs={12}>
-                        <Paper className={classes.paper} style={{padding:'8px'}}>
-                            Total : ({totalItems} Items)
-                        </Paper>
+                    <TableContainer component={Paper} style={{ padding: '5px', textAlign: 'center', paddingBottom: '2.20rem' }}>
+                        <h4>
+                            Cart Summary
+                        </h4>
+                        <Grid container spacing={1} style={{ padding: '10px' }}>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper} style={{ padding: '8px' }}>
+                                    Total : ({totalItems} Items)
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper} style={{ padding: '8px' }}>
+                                    Total Price: {totalPrice}
+                                </Paper>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                        <Paper className={classes.paper} style={{padding:'8px'}}>
-                          Total Price: {totalPrice}
-                        </Paper>
-                        </Grid>
-                    </Grid>
-                    <Link to="/checkout">
-                        <Button variant="contained" style={{ background:'#007d5e', color:'white' }}> Checkout</Button>
-                    </Link>
-                </TableContainer>
+                        <Link to="/checkout">
+                            <Button variant="contained" style={{ background: '#007d5e', color: 'white' }}> Checkout</Button>
+                        </Link>
+                    </TableContainer>
                 </Grid>
             </Grid>
-                                
+
 
             {/* <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
                 
@@ -258,10 +258,10 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         removeFromCart: (id) => dispatch(removeFromCart(id)),
         adjustQty: (id, value) => dispatch(adjustQty(id, value))
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(CartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

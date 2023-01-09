@@ -142,7 +142,7 @@ const Home = ({ fetchData, shop }) => {
 
     // useEffect(()=>{
     // setProducts({ loading: true });
-    // fetch('https://cherry-pie-50881.herokuapp.com/products')
+    // fetch('https://phono-mania-server.onrender.com/products')
     // .then(res => res.json())
     // .then(data => {
     //     console.log(data);

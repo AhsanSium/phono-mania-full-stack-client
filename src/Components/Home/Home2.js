@@ -31,7 +31,7 @@ export default () => {
 
   // useEffect(()=>{
   // setProducts({ loading: true });
-  // fetch('https://cherry-pie-50881.herokuapp.com/products3')
+  // fetch('https://phono-mania-server.onrender.com/products3')
   // .then(res => res.json())
   // .then(data => {
   //     console.log(data);
@@ -51,18 +51,18 @@ export default () => {
 
   return (
     <>
-    {/* <Header /> */}
-    <AnimationRevealPage>
-      <Hero
-        heading={<>Latest & Flagship <HighlightedText>SmartPhones</HighlightedText></>}
-        description="Check out our latest smartphones collection. We have all kinds of smartphones available with very attractive price"
-        imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
-        imageCss={imageCss}
-        imageDecoratorBlob={true}
-        primaryButtonText="Order Now"
-        watchVideoButtonText="Meet The Chefs"
-      />
-      {/* <MainFeature
+      {/* <Header /> */}
+      <AnimationRevealPage>
+        <Hero
+          heading={<>Latest & Flagship <HighlightedText>SmartPhones</HighlightedText></>}
+          description="Check out our latest smartphones collection. We have all kinds of smartphones available with very attractive price"
+          imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
+          imageCss={imageCss}
+          imageDecoratorBlob={true}
+          primaryButtonText="Order Now"
+          watchVideoButtonText="Meet The Chefs"
+        />
+        {/* <MainFeature
         subheading={<Subheading>Established Since 2014</Subheading>}
         heading={
           <>
@@ -89,82 +89,82 @@ export default () => {
         imageDecoratorBlob={true}
         imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
       /> */}
-      {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
-      <TabGrid
-        // data={products}
-        heading={
-          <>
-            Checkout our <HighlightedText>Smartphones.</HighlightedText>
-          </>
-        }
-      />
-      <Features
-        heading={
-          <>
-            Amazing <HighlightedText>Services.</HighlightedText>
-          </>
-        }
-        cards={[
-          {
-            imageSrc: shopIconImageSrc,
-            title: "230+ Locations",
-            description: "We Cover All of these locations",
-            url: ""
-          },
-          {
-            imageSrc: delivery,
-            title: "Super Fast Delivery",
-            description: "We Deliver All the products on time right in front of your doors",
-            url: ""
-          },
-          {
-            imageSrc: celebrationIconImageSrc,
-            title: "Amaizing Discounts",
-            description: "We provide amaizing discounts and the best price available in the market",
-            url: ""
+        {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
+        <TabGrid
+          // data={products}
+          heading={
+            <>
+              Checkout our <HighlightedText>Smartphones.</HighlightedText>
+            </>
           }
-        ]}
+        />
+        <Features
+          heading={
+            <>
+              Amazing <HighlightedText>Services.</HighlightedText>
+            </>
+          }
+          cards={[
+            {
+              imageSrc: shopIconImageSrc,
+              title: "230+ Locations",
+              description: "We Cover All of these locations",
+              url: ""
+            },
+            {
+              imageSrc: delivery,
+              title: "Super Fast Delivery",
+              description: "We Deliver All the products on time right in front of your doors",
+              url: ""
+            },
+            {
+              imageSrc: celebrationIconImageSrc,
+              title: "Amaizing Discounts",
+              description: "We provide amaizing discounts and the best price available in the market",
+              url: ""
+            }
+          ]}
 
-        imageContainerCss={tw`p-2!`}
-        imageCss={tw`w-20! h-20!`}
-      />
-      <MainFeature2
-        subheading={<Subheading>A Reputed Online Store</Subheading>}
-        heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}
-        statistics={[
-          {
-            key: "Orders",
-            value: "94000+",
-          },
-          {
-            key: "Customers",
-            value: "11000+"
-          },
-          {
-            key: "Logistics",
-            value: "1500+"
-          }
-        ]}
-        primaryButtonText="Order Now"
-        primaryButtonUrl="https://order.now.com"
-        imageInsideDiv={false}
-        imageSrc={smartphoneBG}
-        imageCss={Object.assign(tw`bg-cover`, imageCss)}
-        imageContainerCss={tw`md:w-1/2 h-auto`}
-        imageDecoratorBlob={true}
-        imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
-        textOnLeft={true}
-      />
-      <Testimonial
-        subheading=""
-        heading={<>Customers <HighlightedText>Love Us.</HighlightedText></>}
-      />
-      <DownloadApp
-        text={<>People around you are ordering awesome Smart Phones using the <HighlightedTextInverse>PhonoMania App.</HighlightedTextInverse></>}
-      />
-      <Footer />
-    </AnimationRevealPage>
+          imageContainerCss={tw`p-2!`}
+          imageCss={tw`w-20! h-20!`}
+        />
+        <MainFeature2
+          subheading={<Subheading>A Reputed Online Store</Subheading>}
+          heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}
+          statistics={[
+            {
+              key: "Orders",
+              value: "94000+",
+            },
+            {
+              key: "Customers",
+              value: "11000+"
+            },
+            {
+              key: "Logistics",
+              value: "1500+"
+            }
+          ]}
+          primaryButtonText="Order Now"
+          primaryButtonUrl="https://order.now.com"
+          imageInsideDiv={false}
+          imageSrc={smartphoneBG}
+          imageCss={Object.assign(tw`bg-cover`, imageCss)}
+          imageContainerCss={tw`md:w-1/2 h-auto`}
+          imageDecoratorBlob={true}
+          imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
+          textOnLeft={true}
+        />
+        <Testimonial
+          subheading=""
+          heading={<>Customers <HighlightedText>Love Us.</HighlightedText></>}
+        />
+        <DownloadApp
+          text={<>People around you are ordering awesome Smart Phones using the <HighlightedTextInverse>PhonoMania App.</HighlightedTextInverse></>}
+        />
+        <Footer />
+      </AnimationRevealPage>
     </>
-    
+
   );
 }

@@ -8,7 +8,7 @@ import * as actionTypes from './shopping-types';
 
 // useEffect(()=>{
 // setProducts({ loading: true });
-// fetch('https://cherry-pie-50881.herokuapp.com/products')
+// fetch('https://phono-mania-server.onrender.com/products')
 // .then(res => res.json())
 // .then(data => {
 //     console.log(data);
@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
-    switch(action.type){
+    switch (action.type) {
         case actionTypes.FETCH_DATA_SUCCESS:
             return {
                 ...state,
@@ -54,27 +54,27 @@ const shopReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
 
-                cart: inCart ? 
-                state.cart.map( (item) => item._id === action.payload.id ? {...item, qty: item.qty + 1} : item) : [...state.cart, {...item, qty: 1}],
+                cart: inCart ?
+                    state.cart.map((item) => item._id === action.payload.id ? { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }],
 
             }
         case actionTypes.REMOVE_FROM_CART:
-            return{
+            return {
                 ...state,
                 cart: state.cart.filter(item => item._id !== action.payload.id),
             }
         case actionTypes.ADJUST_QTY:
-            return{
+            return {
                 ...state,
-                cart: state.cart.map(item => item._id === action.payload.id ? {...item, qty: action.payload.qty} : item
+                cart: state.cart.map(item => item._id === action.payload.id ? { ...item, qty: action.payload.qty } : item
                 ),
             }
         case actionTypes.LOAD_CURRENT_ITEM:
-            return{
+            return {
                 ...state,
                 currentItem: action.payload,
             }
-        default: 
+        default:
             return state;
     }
 }
